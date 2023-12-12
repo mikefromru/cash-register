@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Item
+from ..models import Item
 import decimal
 
 class ItemTestCase(TestCase):
