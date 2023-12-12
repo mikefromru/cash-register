@@ -5,14 +5,15 @@ from django.http import HttpResponse
 from .models import Bill
 from .serializers import BillSerializer
 from rest_framework.renderers import JSONRenderer
+from django.http import HttpResponseRedirect
 from rest_framework.parsers import JSONParser
 from .models import Item
 
-from io import BytesIO
-import json
 import os
 import fpdf
+import qrcode
 from datetime import datetime
+from django.http import FileResponse
 
 
 @api_view(['POST'])
@@ -45,5 +46,22 @@ def load_bill(request):
     pdf.cell(200, 10, txt='000003751# 05970', ln=1, align='T')
 
     pdf.output('media/чек.pdf')
+    url = 'http://localhost:8000/media/чек.pdf'
+    img = qrcode.make(url)
+    img.save('media/qr-bill.png')
 
-    return Response('msg')
+    qr_url = 'http://localhost:8000/media/qr-bill.png'
+
+
+
+    # var = open('bill.png', 'rb')
+    # response = FileResponse(var)
+    # return HttpResponseRedirect(redirect_to='https://google.com')
+
+    # return HttpResponseRedirect(redirect_to='http://localhost:8000/media/чек.pdf')
+    # return HttpResponse('var')
+    # return HttpResponse('var', content_type='image/png')
+
+    # return Response(var, content_type='image/png')
+
+    return Response({'redirect_url': qr_url})
