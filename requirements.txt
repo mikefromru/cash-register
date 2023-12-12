@@ -1,7 +1,11 @@
 django
 djangorestframework
 django-environ
+python-dotenv
 flake8
 qrcode
+fpdf
+art
+simple-term-menu
 
 
