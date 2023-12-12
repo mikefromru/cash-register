@@ -1,12 +1,7 @@
 from django.contrib import admin
-from .models import Item, Bill
-# Register your models here
+from .models import Item
+
 
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
     pass
-
-@admin.register(Bill)
-class ItemAdmin(admin.ModelAdmin):
-    pass
-
