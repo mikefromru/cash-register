@@ -17,7 +17,6 @@ def get_qrfile():
         redirect_url = r.json()
         webbrowser.open_new_tab(redirect_url.get('redirect_url'))
 
-
 def main():
     name = 'Cash-register'
     print(text2art(name))
@@ -31,7 +30,6 @@ def main():
         get_qrfile()
     else:
         raise SystemExit()
-
 
 
 if __name__ ==  '__main__':
